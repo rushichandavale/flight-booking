@@ -1,4 +1,4 @@
-[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-NETLIFY-ID/deploy-status)](https://app.netlify.com/sites/flight-explorer-yourname/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/88100f30-ff86-4457-95d3-0ce31fb2eca3/deploy-status)](https://app.netlify.com/projects/ecflight-booking-app/deploys)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white)
 # Flight Explorer Web App
