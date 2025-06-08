@@ -13,8 +13,11 @@ function Search() {
 
   useEffect(() => {
     const storedFlights = getStorage('flights');
-    if (storedFlights) {
+    if (storedFlights && storedFlights.length > 0) {
+      console.log(`Search.js: Loaded ${storedFlights.length} flights from localStorage`);
       dispatch(setFlights(storedFlights));
+    } else {
+      console.warn('Search.js: No flights found in localStorage');
     }
   }, [dispatch]);
 

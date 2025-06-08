@@ -16,6 +16,9 @@ const authSlice = createSlice({
     signup: (state, action) => {
       const { name, email, password, role } = action.payload;
       const users = getStorage('users') || [];
+      if (users.find((u) => u.email === email)) {
+        throw new Error('User already exists');
+      }
       const encryptedPassword = CryptoJS.AES.encrypt(password, 'secret-key').toString();
       const user = { id: uuidv4(), name, email, password: encryptedPassword, role };
       users.push(user);
@@ -23,6 +26,7 @@ const authSlice = createSlice({
       state.user = user;
       state.isAuthenticated = true;
       state.sessionTimeout = Date.now() + 5 * 60 * 1000; // 5 minutes
+      setStorage('currentUser', user);
     },
     login: (state, action) => {
       const { email, password } = action.payload;
@@ -35,16 +39,23 @@ const authSlice = createSlice({
             state.user = user;
             state.isAuthenticated = true;
             state.sessionTimeout = Date.now() + 5 * 60 * 1000; // 5 minutes
+            setStorage('currentUser', user);
+          } else {
+            throw new Error('Invalid password');
           }
         } catch (error) {
           console.error('Decryption error:', error);
+          throw new Error('Invalid credentials');
         }
+      } else {
+        throw new Error('User not found');
       }
     },
     logout: (state) => {
       state.user = null;
       state.isAuthenticated = false;
       state.sessionTimeout = null;
+      setStorage('currentUser', null);
     },
     updateSession: (state) => {
       if (state.isAuthenticated) {
@@ -55,6 +66,7 @@ const authSlice = createSlice({
       state.user = action.payload;
       state.isAuthenticated = true;
       state.sessionTimeout = Date.now() + 5 * 60 * 1000;
+      setStorage('currentUser', action.payload);
     },
   },
 });

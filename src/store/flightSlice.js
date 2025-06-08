@@ -23,7 +23,7 @@ const flightSlice = createSlice({
       setStorage('flights', action.payload);
     },
     addFlight: (state, action) => {
-      const newFlight = { id: uuidv4(), ...action.payload };
+      const newFlight = { id: action.payload.id || uuidv4(), ...action.payload };
       state.flights.push(newFlight);
       setStorage('flights', state.flights);
     },
