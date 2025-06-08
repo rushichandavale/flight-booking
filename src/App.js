@@ -23,6 +23,7 @@ import Footer from './components/Footer';
 import Profile from './pages/Profile';
 import Bookings from './pages/Bookings';
 import SessionManager from './components/SessionManager';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   const dispatch = useDispatch();
@@ -59,8 +60,9 @@ function App() {
     <Router>
       <div className="flex flex-col min-h-screen">
         <SessionManager />
+        <ScrollToTop />
         <Navbar />
-        <main className="flex-grow pt-[64px]">
+        <main className="flex-grow pt-16 sm:pt-[64px]">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />

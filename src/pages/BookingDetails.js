@@ -3,7 +3,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { getStorage } from '../services/storage';
 import { InputField } from '../components/Common';
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaArrowLeft } from 'react-icons/fa';
 
 function BookingDetails() {
   const { id } = useParams();
@@ -30,6 +30,8 @@ function BookingDetails() {
         setErrors({ form: 'Booking not found or unauthorized' });
       }
     }
+    // Scroll to top on page load
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
   }, [id, user, flights]);
 
   const seatsAvailable = (flight.seatsAvailable || 0) - (flight.seatsBooked || 0);
@@ -89,7 +91,7 @@ function BookingDetails() {
 
   if (errors.form && id) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12 px-2 sm:px-4 md:px-6 lg:px-8">
+      <div className="bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
         <section
           className="max-w-md mx-auto min-w-[280px]"
           role="region"
@@ -97,27 +99,31 @@ function BookingDetails() {
         >
           <h1
             id="error-heading"
-            className="text-3xl sm:text-4xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 to-teal-500 text-transparent bg-clip-text"
+            className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 bg-gradient-to-r from-blue-600 to-teal-500 text-transparent bg-clip-text"
             data-aos="fade-up"
             data-aos-duration="1000"
           >
             Error
           </h1>
           <div
-            className="bg-white rounded-lg shadow-md p-6 hover:bg-teal-50"
+            className="bg-white rounded-lg shadow-md p-4 sm:p-6 hover:bg-teal-50"
             data-aos="fade-up"
             data-aos-duration="1200"
           >
             <p className="text-red-500 text-sm sm:text-base mb-4" data-aos="fade-up" data-aos-duration="1000">
               {errors.form}
             </p>
-            <button
-              className="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-lg text-base font-medium hover:from-blue-700 hover:to-teal-600 shadow-md focus:ring-2 focus:ring-blue-600"
-              onClick={() => navigate('/bookings')}
-              aria-label="Back to bookings"
-            >
-              Back to Bookings
-            </button>
+            <div className="flex justify-end">
+              <button
+                className="inline-block p-2 text-blue-600 hover:text-blue-700 rounded-full hover:bg-blue-100 focus:ring-2 focus:ring-blue-600"
+                onClick={() => navigate('/bookings')}
+                aria-label="Back to bookings"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              >
+                <FaArrowLeft className="text-lg sm:text-xl" />
+              </button>
+            </div>
           </div>
         </section>
       </div>
@@ -125,38 +131,27 @@ function BookingDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-2 sm:px-4 md:px-6 lg:px-8">
+    <div className="bg-gray-50 py-6 px-4 sm:px-6 lg:px-8">
       <section
         className="max-w-7xl mx-auto min-w-[280px]"
         role="region"
         aria-labelledby="booking-details-heading"
       >
-        <div className="flex justify-between items-center mb-6">
-          <h1
-            id="booking-details-heading"
-            className="text-3xl sm:text-4xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-teal-500 text-transparent bg-clip-text"
-            data-aos="fade-up"
-            data-aos-duration="1000"
-          >
-            {id ? 'Booking Details' : 'Enter Booking Details'}
-          </h1>
-          <button
-            className="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-lg text-base font-medium hover:from-blue-700 hover:to-teal-600 shadow-md focus:ring-2 focus:ring-blue-600"
-            onClick={() => navigate(state?.from || '/bookings')}
-            aria-label="Back to bookings"
-            data-aos="fade-left"
-            data-aos-duration="1000"
-          >
-            Back to Bookings
-          </button>
-        </div>
+        <h1
+          id="booking-details-heading"
+          className="text-2xl sm:text-3xl font-bold text-gray-800 mb-6 bg-gradient-to-r from-blue-600 to-teal-500 text-transparent bg-clip-text"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+        >
+          {id ? 'Booking Details' : 'Enter Booking Details'}
+        </h1>
         <div
-          className="bg-white rounded-lg shadow-md p-6 mb-6 hover:bg-teal-50 hover:shadow-xl "
+          className="bg-white rounded-lg shadow-md p-4 sm:p-6 mb-6 hover:bg-teal-50 hover:shadow-xl"
           data-aos="fade-up"
           data-aos-duration="1200"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">Flight Details</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4 lg:gap-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Flight Details</h2>
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
             <p className="text-gray-600 text-sm sm:text-base">
               <span className="font-semibold">Route:</span> {flight.from || 'N/A'} → {flight.to || 'N/A'}
             </p>
@@ -185,21 +180,21 @@ function BookingDetails() {
           </div>
         </div>
         <div
-          className="bg-white rounded-lg shadow-md p-6 space-y-6 hover:bg-teal-50 hover:shadow-xl "
+          className="bg-white rounded-lg shadow-md p-4 sm:p-6 space-y-6 hover:bg-teal-50 hover:shadow-xl"
           data-aos="fade-up"
           data-aos-duration="1300"
         >
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">Passenger Details</h2>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-4">Passenger Details</h2>
           {id && booking ? (
             <div className="space-y-4">
               {passengers.map((passenger, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 rounded-lg p-4 hover:bg-teal-50 hover:shadow-md transition-all duration-300"
+                  className="border border-gray-200 rounded-lg p-3 sm:p-4 hover:bg-teal-50 hover:shadow-md transition-all duration-300"
                   data-aos="fade-up"
                   data-aos-duration={1300 + index * 100}
                 >
-                  <p className="font-semibold text-gray-700 text-base sm:text-lg">
+                  <p className="font-semibold text-gray-700 text-sm sm:text-base">
                     Passenger {index + 1}
                   </p>
                   <p className="text-gray-600 text-sm sm:text-base">Name: {passenger.name}</p>
@@ -212,12 +207,12 @@ function BookingDetails() {
               {passengers.map((passenger, index) => (
                 <div
                   key={index}
-                  className="border border-gray-200 rounded-lg p-4 space-y-4 relative hover:bg-teal-50 hover:shadow-md transition-all duration-300"
+                  className="border border-gray-200 rounded-lg p-3 sm:p-4 space-y-4 relative hover:bg-teal-50 hover:shadow-md transition-all duration-300"
                   data-aos="fade-up"
                   data-aos-duration={1300 + index * 100}
                 >
                   <div className="flex justify-between items-center">
-                    <p className="font-semibold text-gray-700 text-base sm:text-lg">
+                    <p className="font-semibold text-gray-700 text-sm sm:text-base">
                       Passenger {index + 1}
                     </p>
                     {passengers.length > 1 && (
@@ -228,11 +223,11 @@ function BookingDetails() {
                         aria-label={`Remove passenger ${index + 1}`}
                         tabIndex={0}
                       >
-                        <FaTrash className="text-sm" />
+                        <FaTrash className="text-sm sm:text-base" />
                       </button>
                     )}
                   </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-4">
+                  <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-4">
                     <InputField
                       label="Name"
                       type="text"
@@ -269,21 +264,36 @@ function BookingDetails() {
               </button>
               {errors.form && (
                 <div
-                  className="bg-red-100 text-red-700 p-3 rounded-lg text-sm sm:text-base text-center"
+                  className="bg-red-100 text-red-700 p-3 rounded-lg text-sm sm:text-base sm:text-center"
                   data-aos="fade-up"
                   data-aos-duration="1000"
                 >
-                  {errors.form}
+                  <p>{errors.form}</p>
                 </div>
               )}
-              <button
-                className="inline-block px-6 py-3 bg-gradient-to-r from-blue-600 to-teal-500 text-white rounded-lg text-base font-medium hover:from-blue-700 hover:to-teal-600  shadow-md focus:ring-2 focus:ring-blue-600"
-                type="submit"
-                aria-label="Proceed to payment"
-              >
-                Proceed to Payment
-              </button>
+              <div className="flex justify-end">
+                <button
+                  className="inline-block px-5 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-blue-600 to-teal-600 text-white rounded-lg text-sm font-medium hover:from-blue-700 hover:to-teal-700 shadow-md focus:ring-2 focus:ring-blue-600"
+                  type="submit"
+                  aria-label="Proceed to payment"
+                >
+                  Proceed to Payment
+                </button>
+              </div>
             </form>
+          )}
+          {id && booking && (
+            <div className="flex justify-end mt-4">
+              <button
+                className="inline-block p-2 text-blue-600 hover:text-blue-700 rounded-full hover:bg-blue-100 focus:ring-2 focus:ring-blue-600"
+                onClick={() => navigate(state?.from || '/bookings')}
+                aria-label="Back to bookings"
+                data-aos="fade-up"
+                data-aos-duration="1000"
+              >
+                <FaArrowLeft className="text-lg sm:text-xl" />
+              </button>
+            </div>
           )}
         </div>
       </section>
