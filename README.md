@@ -1,6 +1,6 @@
 # Flight Explorer Web App
 
-A modern flight booking application built as a coding challenge for the Web App Developer position at ** Pvt. Ltd. This project demonstrates advanced React.js development with secure authentication, multi-city flight search, booking/payment simulation, admin dashboard, and an interactive flight path map.
+A modern flight booking application. This project demonstrates advanced React.js development with secure authentication, multi-city flight search, booking/payment simulation, admin dashboard, and an interactive flight path map.
 
 ## Table of Contents
 - [Features](#features)
