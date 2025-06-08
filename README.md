@@ -1,3 +1,6 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/YOUR-NETLIFY-ID/deploy-status)](https://app.netlify.com/sites/flight-explorer-yourname/deploys)
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=flat&logo=react&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=flat&logo=tailwind-css&logoColor=white)
 # Flight Explorer Web App
 
 A modern flight booking application. This project demonstrates advanced React.js development with secure authentication, multi-city flight search, booking/payment simulation, admin dashboard, and an interactive flight path map.
