@@ -79,7 +79,7 @@ A modern flight booking application. This project demonstrates advanced React.js
    - View/filter bookings.
 
 ## Deployment
-- **Live Demo**: https://flight-explorer-yourname.netlify.app
+- **Live Demo**: https://ecflight-booking-app.netlify.app/
 - Deployed on Netlify with continuous integration from GitHub.
 
 ## Demo
