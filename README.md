@@ -32,7 +32,7 @@ A modern flight booking application. This project demonstrates advanced React.js
   - Add, edit, delete flights (e.g., Pune to Mumbai, 50 seats, 12 booked).
   - View, search, and filter all bookings.
 - **Bonus Features**:
-  - Interactive flight path map using ArcGIS.
+  - Interactive flight path map using openlayers.
   - Responsive design for mobile, tablet, and desktop.
   - Robust error handling for invalid inputs and API failures.
 - **Data Persistence**: LocalStorage for flights and bookings.
@@ -50,7 +50,7 @@ A modern flight booking application. This project demonstrates advanced React.js
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/rushichandavale/flight-explorer.git
+   git clone https://github.com/rushichandavale/flight-booking.git
    cd flight-explorer
    ```
 2. Install dependencies:
