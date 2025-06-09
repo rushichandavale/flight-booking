@@ -50,7 +50,7 @@ A modern flight booking application. This project demonstrates advanced React.js
 ## Installation
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/flight-explorer.git
+   git clone https://github.com/rushichandavale/flight-explorer.git
    cd flight-explorer
    ```
 2. Install dependencies:
